@@ -52,21 +52,21 @@ export default function Textform(props) {
               <h1>{props.header}</h1>
             <div className="mb-3">
            
-                    <textarea className="form-control my-2" value={text} onChange={handleOnChange} style={{ backgroundColor:  props.mode === 'dark' ? 'grey' : 'white',color:props.mode === 'dark' ? 'white' : 'black'  }} id="myBox" rows="8"></textarea>
+                    <textarea className="form-control my-2" value={text} onChange={handleOnChange} style={{ backgroundColor:  props.mode === 'dark' ? '#0e1e39' : 'white',color:props.mode === 'dark' ? 'white' : 'black'  }} id="myBox" rows="8"></textarea>
             </div>
-            <button className="btn btn-primary mx-2"  onClick = {handleUpClick} >Convert Uppercase</button>
-            <button className="btn btn-primary mx-2" onClick = {handleLoClick} >Convert Lowercase</button>
-            <button className="btn btn-primary mx-2" onClick = {handleclearClick} >Clear Text</button>
-            <button className="btn btn-primary mx-2" onClick = {handleCopy} >Copy Text</button>
-            <button className="btn btn-primary mx-2" onClick = {handleExtraSpaces} >Remove Spaces</button>
+                <button disabled={ text.length===0} className="btn btn-primary mx-2 my-2"  onClick = {handleUpClick} >Convert Uppercase</button>
+            <button disabled={ text.length===0} className="btn btn-primary mx-2 my-2" onClick = {handleLoClick} >Convert Lowercase</button>
+            <button disabled={ text.length===0} className="btn btn-primary mx-2 my-2" onClick = {handleclearClick} >Clear Text</button>
+            <button disabled={ text.length===0} className="btn btn-primary mx-2 my-2" onClick = {handleCopy} >Copy Text</button>
+            <button disabled={ text.length===0} className="btn btn-primary mx-2 my-2" onClick = {handleExtraSpaces} >Remove Spaces</button>
             
             </div>
         <div className="container my-3"  style={{ color:  props.mode === 'dark' ? 'white' : 'black' }}>
                 <h1>Your Text Summary</h1>
-                <p><b>{text.split(" ").length} Word and {text.length}</b></p>
-                <p>{0.008*text.split(" ").length} Minutes Read</p>
+                <p><b>{text.split(" ").filter((element)=>{return element.length !==0}).length} Word and {text.length}</b></p>
+                <p>{0.008*text.split(" ").filter((element)=>{return element.length !==0}).length} Minutes Read</p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{text.length>0?text:"Nothing to preview"}</p>
                 
         </div>
         </>
